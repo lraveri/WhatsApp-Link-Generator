@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Lobster&display=swap"
       rel="stylesheet"
     />
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 
     <style>
       body {
@@ -68,7 +68,10 @@
             id="countryCode"
             class="form-select px-2 py-2 border border-gray-300 w-1/3 mr-1"
           >
-            <option data-countryCode="GB" value="44" selected>UK (+44)</option>
+            <option data-countryCode="IT" value="39" selected>
+              Italy (+39)
+            </option>
+            <option data-countryCode="GB" value="44">UK (+44)</option>
             <option data-countryCode="US" value="1">USA (+1)</option>
             <optgroup label="Other countries">
               <option data-countryCode="DZ" value="213">Algeria (+213)</option>
@@ -228,7 +231,7 @@
               <option data-countryCode="IQ" value="964">Iraq (+964)</option>
               <option data-countryCode="IE" value="353">Ireland (+353)</option>
               <option data-countryCode="IL" value="972">Israel (+972)</option>
-              <option data-countryCode="IT" value="39">Italy (+39)</option>
+              <!-- <option data-countryCode="IT" value="39">Italy (+39)</option> -->
               <option data-countryCode="JM" value="1876">
                 Jamaica (+1876)
               </option>
@@ -495,21 +498,22 @@
         var linkTypeSelect = document.getElementById("linkType");
 
         function updateVisibility() {
-        var linkType = linkTypeSelect.value;
-        if (linkType === "simple") {
+          var linkType = linkTypeSelect.value;
+          if (linkType === "simple") {
             document.getElementById("countryCode").style.display = "";
             document.getElementById("phoneNumber").style.display = "";
             document.getElementById("message").style.display = "none";
-        } else if (linkType === "pretext") {
+          } else if (linkType === "pretext") {
             document.getElementById("countryCode").style.display = "";
             document.getElementById("phoneNumber").style.display = "";
             document.getElementById("message").style.display = "";
-        } else { // linkType === "api"
+          } else {
+            // linkType === "api"
             document.getElementById("countryCode").style.display = "none";
             document.getElementById("phoneNumber").style.display = "none";
             document.getElementById("message").style.display = "";
+          }
         }
-    }
 
         linkTypeSelect.addEventListener("change", updateVisibility);
 
