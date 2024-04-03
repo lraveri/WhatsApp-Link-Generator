@@ -512,23 +512,31 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        var countryCodeSelect = document.getElementById("countryCode");
-
-        function updateDisplayedValue() {
+        function updateOptionText() {
           var selectedOption =
             countryCodeSelect.options[countryCodeSelect.selectedIndex];
-          var fullText = selectedOption.text;
-          var matches = fullText.match(/\+(\d+)/);
-
+          var matches = selectedOption.text.match(/\+(\d+)/);
           if (matches) {
-            var displayedText = matches[0];
-            selectedOption.text = displayedText;
+            selectedOption.text = `(+${matches[1]})`;
           }
         }
+        var countryCodeSelect = document.getElementById("countryCode");
 
-        countryCodeSelect.addEventListener("change", updateDisplayedValue);
+        var originalOptions = [];
+        document
+          .querySelectorAll("#countryCode option")
+          .forEach(function (option) {
+            originalOptions.push(option.text);
+          });
+        updateOptionText();
 
-        updateDisplayedValue();
+        countryCodeSelect.addEventListener("change", updateOptionText);
+
+        countryCodeSelect.addEventListener("mousedown", function () {
+          this.querySelectorAll("option").forEach(function (option, index) {
+            option.text = originalOptions[index];
+          });
+        });
 
         var linkTypeSelect = document.getElementById("linkType");
 
