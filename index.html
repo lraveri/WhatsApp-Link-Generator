@@ -14,15 +14,32 @@
       href="https://fonts.googleapis.com/css2?family=Lobster&display=swap"
       rel="stylesheet"
     />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 
     <style>
+      body,
+      button,
+      input,
+      textarea,
+      select {
+        font-family: "Poppins";
+      }
+      #generatedLink {
+        max-width: 100%;
+        overflow: auto;
+        word-wrap: break-word;
+      }
       body {
-        background-color: #25d366; /* WhatsApp Green Background */
+        background-color: #ff7a3d; /* WhatsApp Green */
         display: flex;
         justify-content: center;
         align-items: center;
-        min-height: 100vh; /* Altezza minima della pagina */
+        min-height: 100vh;
         margin: 0;
       }
       .whatsapp-tool {
@@ -35,7 +52,7 @@
         padding: 40px;
       }
       .whatsapp-button {
-        background-color: #25d366; /* WhatsApp Green Button */
+        background-color: #ff7a3d; /* WhatsApp Green #25d366 */
         border: none;
         color: white;
       }
@@ -45,7 +62,7 @@
         font-style: normal;
       }
       .links-section {
-        background-color: #f9f9f9; /* Scegli un colore di sfondo */
+        background-color: #f9f9f9;
       }
     </style>
   </head>
@@ -478,7 +495,7 @@
         class="links-section mx-auto p-4 max-w-md text-center mt-4 bg-white rounded shadow"
       >
         <a
-          href="http://www.sandmillmodel.it"
+          href="http://www.sandmillmodel.com"
           target="_blank"
           class="text-blue-600 hover:text-blue-800"
           >Powered by Sand-Mill Model</a
@@ -495,6 +512,24 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
+        var countryCodeSelect = document.getElementById("countryCode");
+
+        function updateDisplayedValue() {
+          var selectedOption =
+            countryCodeSelect.options[countryCodeSelect.selectedIndex];
+          var fullText = selectedOption.text;
+          var matches = fullText.match(/\+(\d+)/);
+
+          if (matches) {
+            var displayedText = matches[0];
+            selectedOption.text = displayedText;
+          }
+        }
+
+        countryCodeSelect.addEventListener("change", updateDisplayedValue);
+
+        updateDisplayedValue();
+
         var linkTypeSelect = document.getElementById("linkType");
 
         function updateVisibility() {
@@ -550,6 +585,10 @@
           });
         };
       }
+      document.getElementById("message").addEventListener("input", function () {
+        this.style.height = "auto";
+        this.style.height = this.scrollHeight + "px";
+      });
     </script>
   </body>
 </html>
